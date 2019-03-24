@@ -30,7 +30,15 @@ module Genderme
 
     def self.fetch_user(user)
       client = Genderme::TwitterUser.info_request
-      user = client.user(user)
+
+      begin
+        user = client.user(user)
+      rescue Twitter::Error::NotFound
+        return nil
+      end
+
+      ap user
+
       user_timeline = client.user_timeline(user)
       tweets = user_timeline.map { |tweet| tweet.text }
 
