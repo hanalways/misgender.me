@@ -45,7 +45,7 @@ module Genderme
       Genderme::TwitterUser.new(user_name: user.screen_name,
                                 name: user.name,
                                 tweets: tweets,
-                                profile_image_url: user.profile_image_url,
+                                profile_image_url: user.profile_image_url(size = :orginal),
                                 bio: user.description)
     end
   end
