@@ -16,8 +16,21 @@ Twitter possibly uses the user's first name to assign them a gender, using a mod
 
 * **Facial recognition**
 Facial recognition algorithms often misgender transgender and gender non-conforming people. There have also been studies that observe a pattern of misgendering women of color, especially black women. The video below, from MIT's Gender Shades project, discusses why these biased algorithms are problematic in a society that increasingly integrates them into everyday life.
+
 [![MIT Gender Shades project](http://img.youtube.com/vi/TWWsW1w-BVo/0.jpg)](http://www.youtube.com/watch?v=TWWsW1w-BVo)
 
 * **Content of posts**
 Twitter possibly uses the text of a user's posts as a factor to determine gender. While this may lead to accurate results when users use gendered language in reference to themselves ("woman", "girl", "mom"), but it may also gender people based on topics they commonly post about or words they use. We noticed that the use of the word "sorry" when testing text gender analysis APIs resulted in text being identified as female with high confidence. In our research, we also saw that in one model, "software" was an "anti-selector" for identifying females. [We're not kidding](https://www.figure-eight.com/using-machine-learning-to-predict-gender/) ¯\_(ツ)_/¯
 
+# Ruby Gems
+* [dotenv](https://github.com/bkeepers/dotenv)
+* [pry](https://github.com/pry/pry)
+* [restclient](https://github.com/rest-client/rest-client)
+* [awesomeprint](https://github.com/awesome-print/awesome_print)
+* [httparty](https://github.com/jnunemaker/httparty)
+
+# APIs
+* [Twitter](https://developer.twitter.com/en/docs.html)
+* [Face++](https://api-us.faceplusplus.com/facepp/v3/detect)
+* [Gender API](https://gender-api.com/get)
+* [Text Gain](https://api.textgain.com/gender)
