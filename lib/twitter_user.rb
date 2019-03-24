@@ -40,12 +40,12 @@ module Genderme
 
       # returns an empty array if no tweets are
       user_timeline = client.user_timeline(user)
-      tweets = user_timeline.map { |tweet| tweet.text }
 
+      tweets = user_timeline.map { |tweet| tweet.text }
       Genderme::TwitterUser.new(user_name: user.screen_name,
                                 name: user.name,
                                 tweets: tweets,
-                                profile_image_url: user.profile_image_url(size = :orginal),
+                                profile_image_url: user.profile_image_url(size = :original),
                                 bio: user.description)
     end
   end

@@ -19,6 +19,7 @@ module Genderme
         key: NAME_GENDER_KEY,
       }
       response = HTTParty.get(url, query: query)
+
       gender = response["gender"]
 
       return gender

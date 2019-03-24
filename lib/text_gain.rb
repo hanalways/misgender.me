@@ -3,17 +3,17 @@ require "httparty"
 require "dotenv"
 Dotenv.load
 
-BASE_URL = "https://api.textgain.com/gender"
+TG_BASE_URL = "https://api.textgain.com/gender"
 TEXT_GAIN_KEY = ENV["TEXT_GAIN_KEY"]
 
 module Genderme
   class TextGain
-    def self.request #(tweet)
-      url = BASE_URL
-      q = "So Much @UsMovie, So Little Time: @TrevorNoah & @Lupita_Nyongo talk fan art, casting and Evil Lupita."
+    def self.request(tweet)
+      url = TG_BASE_URL
+      q = tweet
       lang = "en"
       key = TEXT_GAIN_KEY
-      sleep(2)
+      sleep(1)
       query = {
         q: q,
         lang: lang,
@@ -21,10 +21,7 @@ module Genderme
       }
       response = HTTParty.get(url, query: query)
       gender = response["gender"]
-
       return gender
     end
   end
 end
-
-puts Genderme::TextGain.request
