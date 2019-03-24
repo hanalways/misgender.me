@@ -1,7 +1,7 @@
 # misgender.me
 TechTogether - Boston Hackathon 2019
 
-Even when websites don't explicitly ask users for their gender, they often use predictive models to gender users based on data the sites collect. Twitter, for example,doesn't ask for gender upon registration, but assigns users a binary gender, which users can access by going to their settings and clicking on 'My Twitter Data'. While it is unclear what kinds of models or features Twitter uses to determine a users' gender, it is apparent that Twitter's gendering algorithm is biased. 
+Even when websites don't explicitly ask users for their gender, they often use predictive models to gender users based on data the sites collect. Twitter, for example, doesn't ask for gender upon registration, but assigns users a binary gender, which users can access by going to their settings and privacy, and clicking on 'Your Twitter Data'. While it is unclear what kinds of models or features Twitter uses to determine a user's gender, it is apparent that Twitter's gendering algorithm is biased. 
 
 Our project aims to call out the implicit bias in gendering algorithms by creating a WebApp that genders users based on information collected from their twitter accounts, informs users about how to access their "Twitter-Assigned Gender", and collects information about how often users are misgendered in correlation with race and gender identity.
 
@@ -19,5 +19,5 @@ Facial recognition algorithms often misgender transgender and gender non-conform
 [![MIT Gender Shades project](http://img.youtube.com/vi/TWWsW1w-BVo/0.jpg)](http://www.youtube.com/watch?v=TWWsW1w-BVo)
 
 * **Content of posts**
-Twitter possibly uses the text of users' posts as a factor to determine gender. While this may lead to accurate results when users use gendered language in reference to themselves ("woman", "girl", "mom"), but it may also gender people based on topics they commonly post about or words they use. We noticed that the use of the word "sorry" when testing text gender analysis APIs resulted in text being identified as female with high confidence. In our research, we also saw that in one model, "software" was an "anti-selector" for identifying females. [We're not kidding](https://www.figure-eight.com/using-machine-learning-to-predict-gender/) ¯\_(ツ)_/¯
+Twitter possibly uses the text of a user's posts as a factor to determine gender. While this may lead to accurate results when users use gendered language in reference to themselves ("woman", "girl", "mom"), but it may also gender people based on topics they commonly post about or words they use. We noticed that the use of the word "sorry" when testing text gender analysis APIs resulted in text being identified as female with high confidence. In our research, we also saw that in one model, "software" was an "anti-selector" for identifying females. [We're not kidding](https://www.figure-eight.com/using-machine-learning-to-predict-gender/) ¯\_(ツ)_/¯
 
