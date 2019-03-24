@@ -27,7 +27,12 @@ def gender_user(username)
   result = { face_gender: face_gender,
              name_gender: name_gender,
              posts_gender: gender_breakdown }
-  binding.pry
 end
 
-gender_user("LogicalLaneia")
+puts "What gender will a machine assign you? Enter your twitter username:"
+username = gets.chomp
+result = gender_user(username)
+puts "According to the Facial Recognition model, a machine would guess that your gender is #{result[:face_gender]}"
+puts "According to the Name Recognition model, a machine would guess that your gender is #{result[:name_gender]}"
+puts "According to the Text Analysis model, a machine would say that your tweets are #{result[:posts_gender][:male]}% male" +
+       "and #{result[:posts_gender][:female]}% female"
