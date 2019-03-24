@@ -9,10 +9,11 @@ FACE_API_SECRET = ENV["FACE_API_SECRET"]
 
 module Genderme
   class Facial_recognition
-    def self.request
+    def self.request(picture_url)
       sleep(2)
+      picture_url = BASE_URL
       response = HTTParty.post(
-        "#{BASE_URL}",
+        "#{picture_url}",
         headers: {"Content-Type" => "application/x-www-form-urlencoded"},
         body: {
           api_key: FACE_API_KEY,
@@ -26,8 +27,8 @@ module Genderme
       return response
     end
 
-    def self.list
-      response = self.request
+    def self.list(picture_url)
+      response = self.request(picture_url)
       people = response["faces"]
       gender_identified = []
       people.each do |person|
@@ -38,18 +39,20 @@ module Genderme
   end
 end
 
-result = Genderme::Facial_recognition.list
+# all of this will go away...
+result = Genderme::Facial_recognition.list("https://api-us.faceplusplus.com/facepp/v3/detect")
 
-if result.size > 1
-  verb = "are"
-  noun = "people"
-  genders = ""
-  result.each do |person|
-    genders += "#{person} "
-  end
-  puts "There #{verb} #{result.size} #{noun} in the picture. Their genders #{verb}: #{genders}"
-else
-  verb = "is"
-  noun = "person"
-  puts "There #{verb} #{result.size} #{noun} in the picture. Their gender #{verb}: #{result}"
-end
+puts result # working
+# if result.size > 1
+#   verb = "are"
+#   noun = "people"
+#   genders = ""
+#   result.each do |person|
+#     genders += "#{person} "
+#   end
+#   puts "There #{verb} #{result.size} #{noun} in the picture. Their genders #{verb}: #{genders}"
+# else
+#   verb = "is"
+#   noun = "person"
+#   puts "There #{verb} #{result.size} #{noun} in the picture. Their gender #{verb}: #{result}"
+# end

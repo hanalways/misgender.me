@@ -8,7 +8,7 @@ TEXT_GAIN_KEY = ENV["TEXT_GAIN_KEY"]
 
 module Genderme
   class TextGain
-    def self.request
+    def self.request #(tweet)
       url = BASE_URL
       q = "So Much @UsMovie, So Little Time: @TrevorNoah & @Lupita_Nyongo talk fan art, casting and Evil Lupita."
       lang = "en"
