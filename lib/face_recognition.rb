@@ -40,9 +40,6 @@ end
 
 result = Genderme::Facial_recognition.list
 
-# if result.size == 0
-#   puts "Unidentified picture"
-# els
 if result.size > 1
   verb = "are"
   noun = "people"
