@@ -8,9 +8,9 @@ NAME_GENDER_KEY = ENV["NAME_GENDER_KEY"]
 
 module Genderme
   class NameGender
-    def self.request #(name, country)
-      name = "Andrea" # name
-      country = "USA" # country
+    def self.request(name, country)
+      name = name
+      country = country
       url = BASE_URL
       sleep(2)
       query = {
@@ -25,5 +25,3 @@ module Genderme
     end
   end
 end
-
-puts Genderme::NameGender.request
