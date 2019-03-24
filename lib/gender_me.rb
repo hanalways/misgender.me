@@ -2,7 +2,6 @@ require_relative "twitter_user"
 require_relative "text_gain"
 require_relative "face_recognition"
 require_relative "name_gender"
-require "awesome_print"
 require "dotenv"
 require "pry"
 
