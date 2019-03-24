@@ -31,14 +31,14 @@ module Genderme
     def self.fetch_user(user)
       client = Genderme::TwitterUser.info_request
 
+      # returns nil if an invalid user name is entered in
       begin
         user = client.user(user)
       rescue Twitter::Error::NotFound
         return nil
       end
 
-      ap user
-
+      # returns an empty array if no tweets are
       user_timeline = client.user_timeline(user)
       tweets = user_timeline.map { |tweet| tweet.text }
 
