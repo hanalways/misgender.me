@@ -28,7 +28,7 @@ class QueriesController < ApplicationController
 
     respond_to do |format|
       if @query.save
-        format.html { redirect_to @query, notice: 'Query was successfully created.' }
+        format.html { redirect_to @query, notice: "Query was successfully created." }
         format.json { render :show, status: :created, location: @query }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class QueriesController < ApplicationController
   def update
     respond_to do |format|
       if @query.update(query_params)
-        format.html { redirect_to @query, notice: 'Query was successfully updated.' }
+        format.html { redirect_to @query, notice: "Query was successfully updated." }
         format.json { render :show, status: :ok, location: @query }
       else
         format.html { render :edit }
@@ -56,19 +56,20 @@ class QueriesController < ApplicationController
   def destroy
     @query.destroy
     respond_to do |format|
-      format.html { redirect_to queries_url, notice: 'Query was successfully destroyed.' }
+      format.html { redirect_to queries_url, notice: "Query was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_query
-      @query = Query.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def query_params
-      params.require(:query).permit(:twitter_handle, :real_gender, :ethnicity)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_query
+    @query = Query.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def query_params
+    params.require(:query).permit(:consent, :username, gender_ids: [], ethnicity_ids: [])
+  end
 end

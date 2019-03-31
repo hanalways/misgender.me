@@ -1,15 +1,4 @@
-<%= form_with(model: query, local: true) do |form| %>
-  <% if query.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(query.errors.count, "error") %> prohibited this query from being saved:</h2>
-
-      <ul>
-      <% query.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= form_for(@query, :url => "/result") do |form| %>
 
   <div class="field">
     <%= form.label "Twitter handle:"  %>

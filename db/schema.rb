@@ -10,12 +10,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_24_041737) do
+ActiveRecord::Schema.define(version: 2019_03_30_183036) do
+
+  create_table "ethnicities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ethnicities_queries", id: false, force: :cascade do |t|
+    t.integer "ethnicity_id", null: false
+    t.integer "query_id", null: false
+  end
+
+  create_table "genders", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genders_queries", id: false, force: :cascade do |t|
+    t.integer "gender_id", null: false
+    t.integer "query_id", null: false
+  end
 
   create_table "queries", force: :cascade do |t|
+    t.boolean "consent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "username"
+  end
+
+  create_table "usernames", force: :cascade do |t|
     t.string "twitter_handle"
-    t.string "real_gender"
-    t.string "ethnicity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
