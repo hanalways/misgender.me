@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Accurate:</strong>
+  <%= @result.accurate %>
+</p>
+
+<p>
+  <strong>Returned result:</strong>
+  <%= @result.returned_value %>
+</p>
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

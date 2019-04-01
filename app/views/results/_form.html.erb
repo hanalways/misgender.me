@@ -1,0 +1,32 @@
+<%= form_for(@result,:url => "/submit-feedback") do |form| %>
+  <% if result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+      <% result.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label "How accurate were the algorithms in guessing your gender?" %> 
+    <%= form.radio_button(:accurate, "Not accurate at all") %>
+    <%= form.label "Not accurate at all" %>
+    <%= form.radio_button(:accurate, "Somewhat accurate") %>
+    <%= form.label "Somewhat accurate" %>
+    <%= form.radio_button(:accurate, "Mostly accurate") %>
+    <%= form.label "Mostly accurate" %>
+    <%= form.radio_button(:accurate, "Completely accurate") %>
+    <%= form.label "Completely accurate" %>
+  </div>
+
+    <%= hidden_field_tag :returned_result, params[:returned_value] %>
+    <%= hidden_field_tag :query_id, params[:query_id] %>
+
+  <div class="actions">
+    <%= form.submit "Submit Feedback" %>
+  </div>
+<% end %>

@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_30_183036) do
-
+ActiveRecord::Schema.define(version: 2019_04_01_054842) do
   create_table "ethnicities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -41,10 +40,12 @@ ActiveRecord::Schema.define(version: 2019_03_30_183036) do
     t.string "username"
   end
 
-  create_table "usernames", force: :cascade do |t|
-    t.string "twitter_handle"
+  create_table "results", force: :cascade do |t|
+    t.string "accurate"
+    t.json "returned_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "query_id"
+    t.index ["query_id"], name: "index_results_on_query_id"
   end
-
 end

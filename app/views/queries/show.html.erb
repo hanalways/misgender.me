@@ -1,9 +1,29 @@
 <p id="notice"><%= notice %></p>
+<h1> <%="Results for @#{@returned_result.username}:"%></h1>
+<br>
+<p><strong>A facial recognition model would guess that the gender(s) in your profile picture are:</strong></p>
+  <%- @returned_result.result[:face_gender].each do |result| %>
+      <h3 id = result><%= "#{result}" %></h3>
+  <% end %>
+  <br>
+<p><strong>Based on your display name, a name recognition model would guess that your gender is :</strong></p>
+<h3 id = result><%=@returned_result.result[:name_gender]%></h3>
+<br>
+<p><strong>Based on your bio, a text analysis model would guess that your gender is :</strong></p>
+<h3 id = result><%=@returned_result.result[:user_bio_gender]%><h3>
+<br>
+<p><strong>A text analysis model would guess that your tweets are :</strong></p>
+<h3 id = result><%="#{@returned_result.result[:posts_gender][:male]} male and #{@returned_result.result[:posts_gender][:female]} female"%></h3>
 
-<p>
-  <strong>Consent:</strong>
-  <%= @query.consent %>
-</p>
 
-<%= link_to 'Edit', edit_query_path(@query) %> |
-<%= link_to 'Back', queries_path %>
+<form action="/feedback">
+    <%= hidden_field_tag :returned_value, @returned_result.result %>
+    <%= hidden_field_tag :query_id, @query.id %>
+    <div class="actions">
+    <%= submit_tag "Submit Feedback"%>
+    </div>
+</form>
+      
+
+
+<%= link_to 'Try again', "/misgender-me" %>
