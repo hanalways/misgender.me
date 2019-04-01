@@ -26,7 +26,8 @@ class ResultsController < ApplicationController
   # POST /results.json
   def create
     @query = Query.find(params[:query_id])
-    @result = @query.build_result(result_params)
+    binding.pry
+    @result = @query.build_result(result_params.merge({ query_id: params[:query_id], returned_value: params[:returned_value] }))
 
     respond_to do |format|
       if @result.save
