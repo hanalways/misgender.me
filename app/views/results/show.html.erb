@@ -1,14 +1,17 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Accurate:</strong>
-  <%= @result.accurate %>
-</p>
-
-<p>
-  <strong>Returned result:</strong>
-  <%= @result.returned_value %>
-</p>
-
-<%= link_to 'Edit', edit_result_path(@result) %> |
-<%= link_to 'Back', results_path %>
+<h1> <%="Results for @#{@query.username}:"%></h1>
+<br>
+<p><strong>A facial recognition model would guess that the gender(s) in your profile picture are:</strong></p>
+  <%- @returned_value[:face_gender].each do |result| %>
+      <h3 id = result><%= "#{result}" %></h3>
+  <% end %>
+  <br>
+<p><strong>Based on your display name, a name recognition model would guess that your gender is :</strong></p>
+<h3 id = result><%=@returned_value[:name_gender]%></h3>
+<br>
+<p><strong>Based on your bio, a text analysis model would guess that your gender is :</strong></p>
+<h3 id = result><%=@returned_value[:user_bio_gender]%><h3>
+<br>
+<p><strong>A text analysis model would guess that your tweets are :</strong></p>
+<h3 id = result><%="#{returned_value[:posts_gender][:male]} male and #{@returned_value[:posts_gender][:female]} female"%></h3>

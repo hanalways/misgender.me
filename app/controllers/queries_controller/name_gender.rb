@@ -3,7 +3,7 @@ class NameGender
   NAME_GENDER_KEY = ENV["NAME_GENDER_KEY"]
 
   attr_reader :assigned_gender
-  
+
   def initialize(gender)
     @assigned_gender = gender
   end

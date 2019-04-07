@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1> <%="Results for @#{@returned_result.username}:"%></h1>
+<h1> <%="Results for @#{@query.username}:"%></h1>
 <br>
 <p><strong>A facial recognition model would guess that the gender(s) in your profile picture are:</strong></p>
   <%- @returned_result.result[:face_gender].each do |result| %>

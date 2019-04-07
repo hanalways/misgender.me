@@ -1,4 +1,7 @@
 class QueriesController < ApplicationController
+  ADMINS = { ENV["ADMIN_USERNAME"] => ENV["ADMIN_PASSWORD"] }
+
+  before_action :authenticate, except: [:new, :create, :show]
   before_action :set_query, only: [:show, :edit, :update, :destroy]
 
   # GET /queries
@@ -10,9 +13,11 @@ class QueriesController < ApplicationController
   # GET /queries/1
   # GET /queries/1.json
   def show
-    # TODO: move the API call somewhere else so it doesn't get called every time show is called
-    @returned_result = GenderMe.new(@query.username)
-    binding.pry
+    if @query.result
+      format.html { redirect_to @query.result }
+    else
+      @returned_result = GenderMe.new(@query.username)
+    end
   end
 
   # GET /queries/new
@@ -68,6 +73,12 @@ class QueriesController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_query
     @query = Query.find(params[:id])
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      ADMINS[username]
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

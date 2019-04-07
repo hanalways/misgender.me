@@ -1,5 +1,10 @@
 body, html {
   height: 100%;
+  
+}
+
+p{
+  font-size: 20px;
 }
 
 /* The hero image */
@@ -37,7 +42,7 @@ text-align: center; }
   font-size: 25px;
 }
 
-.flex-grid {
+.flex {
   display: flex;
   flex-flow: row wrap;
   margin:20px;
@@ -47,4 +52,5 @@ text-align: center; }
 .collection-check-box {
   width:300px;
   justify-content: left;
+  display:flex;
 }

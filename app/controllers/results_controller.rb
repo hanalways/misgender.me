@@ -1,4 +1,7 @@
 class ResultsController < ApplicationController
+  ADMINS = { ENV["ADMIN_USERNAME"] => ENV["ADMIN_PASSWORD"] }
+
+  before_action :authenticate, except: [:new, :create, :show]
   before_action :set_result, only: [:show, :edit, :update, :destroy]
 
   # GET /results
@@ -10,12 +13,13 @@ class ResultsController < ApplicationController
   # GET /results/1
   # GET /results/1.json
   def show
+    @returned_value = JSON.parse(@result.returned_value, symbolize_names: true)
   end
 
   # GET /results/new
   def new
     @query = Query.find(params[:query_id])
-    @result = @query.build_result
+    @result = @query.result ? @query.result : @query.build_result
   end
 
   # GET /results/1/edit
@@ -26,8 +30,7 @@ class ResultsController < ApplicationController
   # POST /results.json
   def create
     @query = Query.find(params[:query_id])
-    binding.pry
-    @result = @query.build_result(result_params.merge({ query_id: params[:query_id], returned_value: params[:returned_value] }))
+    @result = @query.result ? @query.result : @query.build_result(result_params.merge({ query_id: params[:query_id], returned_value: params[:returned_value] }))
 
     respond_to do |format|
       if @result.save
@@ -69,6 +72,13 @@ class ResultsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_result
     @result = Result.find(params[:id])
+    @query = Query.find(@result.query_id)
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      ADMINS[username]
+    end
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

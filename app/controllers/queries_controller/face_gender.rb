@@ -4,7 +4,7 @@ class FaceGender
   FR_BASE_URL = "https://api-us.faceplusplus.com/facepp/v3/detect"
 
   attr_reader :assigned_gender
-  
+
   def initialize(gender)
     @assigned_gender = gender
   end
