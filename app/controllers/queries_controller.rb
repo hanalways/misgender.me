@@ -10,16 +10,6 @@ class QueriesController < ApplicationController
     @queries = Query.all
   end
 
-  # GET /queries/1
-  # GET /queries/1.json
-  def show
-    if @query.result
-      format.html { redirect_to @query.result }
-    else
-      @returned_result = GenderMe.new(@query.username)
-    end
-  end
-
   # GET /queries/new
   def new
     @query = Query.new
@@ -35,8 +25,7 @@ class QueriesController < ApplicationController
     @query = Query.new(query_params)
     respond_to do |format|
       if @query.save
-        format.html { redirect_to @query }
-        format.json { render :show, status: :created, location: @query }
+        format.html { redirect_to new_query_result_path(@query) }
       end
     else
       format.html { render :new }

@@ -4,22 +4,18 @@ class ResultsController < ApplicationController
   before_action :authenticate, except: [:new, :create, :show]
   before_action :set_result, only: [:show, :edit, :update, :destroy]
 
-  # GET /results
-  # GET /results.json
   def index
     @results = Result.all
   end
 
-  # GET /results/1
-  # GET /results/1.json
   def show
-    @returned_value = JSON.parse(@result.returned_value, symbolize_names: true)
+    @result = Result.find(params[:id])
   end
 
-  # GET /results/new
   def new
     @query = Query.find(params[:query_id])
-    @result = @query.result ? @query.result : @query.build_result
+    @returned_value = GenderMe.new(@query.username).result
+    @result = Result.new
   end
 
   # GET /results/1/edit
@@ -30,12 +26,11 @@ class ResultsController < ApplicationController
   # POST /results.json
   def create
     @query = Query.find(params[:query_id])
-    @result = @query.result ? @query.result : @query.build_result(result_params.merge({ query_id: params[:query_id], returned_value: params[:returned_value] }))
+    @result = @query.build_result result_params
 
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @result, notice: "Result was successfully created." }
-        format.json { render :show, status: :created, location: @result }
+        redirect_to @result
       else
         format.html { render :new }
         format.json { render json: @result.errors, status: :unprocessable_entity }

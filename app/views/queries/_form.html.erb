@@ -1,4 +1,4 @@
-<%= form_for(@query, :url => "/submit") do |form| %>
+<%= form_with model: @query do |form| %>
   
 
   <div class="field">
@@ -34,9 +34,6 @@
     <%= form.check_box :consent %>
   </div>
 
-
-
-  
   <div class="actions">
     <%= form.submit "Misgender me"%>
   </div>

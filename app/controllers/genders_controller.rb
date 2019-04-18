@@ -1,4 +1,7 @@
 class GendersController < ApplicationController
+  ADMINS = { ENV["ADMIN_USERNAME"] => ENV["ADMIN_PASSWORD"] }
+
+  before_action :authenticate
   before_action :set_gender, only: [:show, :edit, :update, :destroy]
 
   # GET /genders
@@ -28,7 +31,7 @@ class GendersController < ApplicationController
 
     respond_to do |format|
       if @gender.save
-        format.html { redirect_to @gender, notice: 'Gender was successfully created.' }
+        format.html { redirect_to @gender, notice: "Gender was successfully created." }
         format.json { render :show, status: :created, location: @gender }
       else
         format.html { render :new }
@@ -42,7 +45,7 @@ class GendersController < ApplicationController
   def update
     respond_to do |format|
       if @gender.update(gender_params)
-        format.html { redirect_to @gender, notice: 'Gender was successfully updated.' }
+        format.html { redirect_to @gender, notice: "Gender was successfully updated." }
         format.json { render :show, status: :ok, location: @gender }
       else
         format.html { render :edit }
@@ -56,19 +59,26 @@ class GendersController < ApplicationController
   def destroy
     @gender.destroy
     respond_to do |format|
-      format.html { redirect_to genders_url, notice: 'Gender was successfully destroyed.' }
+      format.html { redirect_to genders_url, notice: "Gender was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_gender
-      @gender = Gender.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def gender_params
-      params.require(:gender).permit(:name)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_gender
+    @gender = Gender.find(params[:id])
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      ADMINS[username]
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def gender_params
+    params.require(:gender).permit(:name)
+  end
 end

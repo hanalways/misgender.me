@@ -1,4 +1,8 @@
 class EthnicitiesController < ApplicationController
+  ADMINS = { ENV["ADMIN_USERNAME"] => ENV["ADMIN_PASSWORD"] }
+
+  before_action :authenticate
+
   before_action :set_ethnicity, only: [:show, :edit, :update, :destroy]
 
   # GET /ethnicities
@@ -28,7 +32,7 @@ class EthnicitiesController < ApplicationController
 
     respond_to do |format|
       if @ethnicity.save
-        format.html { redirect_to @ethnicity, notice: 'Ethnicity was successfully created.' }
+        format.html { redirect_to @ethnicity, notice: "Ethnicity was successfully created." }
         format.json { render :show, status: :created, location: @ethnicity }
       else
         format.html { render :new }
@@ -42,7 +46,7 @@ class EthnicitiesController < ApplicationController
   def update
     respond_to do |format|
       if @ethnicity.update(ethnicity_params)
-        format.html { redirect_to @ethnicity, notice: 'Ethnicity was successfully updated.' }
+        format.html { redirect_to @ethnicity, notice: "Ethnicity was successfully updated." }
         format.json { render :show, status: :ok, location: @ethnicity }
       else
         format.html { render :edit }
@@ -56,19 +60,26 @@ class EthnicitiesController < ApplicationController
   def destroy
     @ethnicity.destroy
     respond_to do |format|
-      format.html { redirect_to ethnicities_url, notice: 'Ethnicity was successfully destroyed.' }
+      format.html { redirect_to ethnicities_url, notice: "Ethnicity was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_ethnicity
-      @ethnicity = Ethnicity.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def ethnicity_params
-      params.require(:ethnicity).permit(:name)
+  # Use callbacks to share common setup or constraints between actions.
+  def set_ethnicity
+    @ethnicity = Ethnicity.find(params[:id])
+  end
+
+  def authenticate
+    authenticate_or_request_with_http_digest do |username|
+      ADMINS[username]
     end
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def ethnicity_params
+    params.require(:ethnicity).permit(:name)
+  end
 end

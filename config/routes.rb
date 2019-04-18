@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :results, only: [:new, :create, :show]
-  resources :queries, only: [:new, :create, :show]
+  resources :results, only: [:create, :show]
+  resources :queries, only: [:new, :create] do
+    resources :results, only: [:new]
+  end
 
   scope "/admin" do
-    resources :queries, except: [:new, :create, :show]
+    resources :queries, except: [:new, :create]
     resources :ethnicities
     resources :genders
     resources :results, except: [:new, :create, :show]
@@ -12,7 +14,6 @@ Rails.application.routes.draw do
   root "static_pages#home"
 
   get "/misgender-me", to: "queries#new"
-  post "/submit", to: "queries#create"
   get "/feedback", to: "results#new"
   post "/submit-feedback", to: "results#create"
   patch "/submit-feedback", to: "results#update"
