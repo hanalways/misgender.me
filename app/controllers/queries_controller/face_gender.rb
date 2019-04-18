@@ -10,7 +10,7 @@ class FaceGender
   end
 
   def self.request(picture_url)
-    sleep(2)
+    sleep(1)
     response = HTTParty.post(
       FR_BASE_URL,
       headers: { "Content-Type" => "application/x-www-form-urlencoded" },

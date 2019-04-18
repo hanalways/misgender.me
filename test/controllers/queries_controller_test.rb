@@ -21,11 +21,6 @@ describe QueriesController do
     must_redirect_to query_path(Query.last)
   end
 
-  it "shows query" do
-    get query_url(query)
-    value(response).must_be :success?
-  end
-
   it "gets edit" do
     get edit_query_url(query)
     value(response).must_be :success?

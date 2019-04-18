@@ -13,9 +13,9 @@
     <%= form.label "Completely accurate" %>
   </div>
 
-    <%= hidden_field_tag :returned_value, @returned_value %>
+    <%= form.hidden_field :returned_value, :value => @returned_value.to_json %>
+    <%= form.hidden_field :query_id, :value => params[:query_id] %>
     <%= hidden_field_tag :query_id, params[:query_id] %>
-
   <div class="actions">
     <%= form.submit "Submit Feedback" %>
   </div>

@@ -10,6 +10,7 @@ class ResultsController < ApplicationController
 
   def show
     @result = Result.find(params[:id])
+    @result_data = JSON.parse(@result.returned_value)
   end
 
   def new
@@ -18,48 +19,31 @@ class ResultsController < ApplicationController
     @result = Result.new
   end
 
-  # GET /results/1/edit
   def edit
   end
 
-  # POST /results
-  # POST /results.json
   def create
     @query = Query.find(params[:query_id])
-    @result = @query.build_result result_params
+    @result = Result.new result_params
 
-    respond_to do |format|
-      if @result.save
-        redirect_to @result
-      else
-        format.html { render :new }
-        format.json { render json: @result.errors, status: :unprocessable_entity }
-      end
+    if @result.save
+      redirect_to @result, notice: "Your result was added to our database. Thank you for your feedback!"
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /results/1
-  # PATCH/PUT /results/1.json
   def update
-    respond_to do |format|
-      if @result.update(result_params)
-        format.html { redirect_to @result, notice: "Result was successfully updated." }
-        format.json { render :show, status: :ok, location: @result }
-      else
-        format.html { render :edit }
-        format.json { render json: @result.errors, status: :unprocessable_entity }
-      end
+    if @result.update(result_params)
+      redirect_to @result, notice: "Result was successfully updated."
+    else
+      render :edit
     end
   end
 
-  # DELETE /results/1
-  # DELETE /results/1.json
   def destroy
     @result.destroy
-    respond_to do |format|
-      format.html { redirect_to results_url, notice: "Result was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to results_url, notice: "Result was successfully destroyed."
   end
 
   private

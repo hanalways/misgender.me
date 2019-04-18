@@ -2,18 +2,18 @@
 <h1> <%="Results for @#{@query.username}:"%></h1>
 <br>
 <p><strong>A facial recognition model would guess that the gender(s) in your profile picture are:</strong></p>
-  <%- @result.returned_value[:face_gender].each do |result| %>
+  <%- @result_data["face_gender"].each do |result| %>
       <h3 id = result><%= "#{result}" %></h3>
   <% end %>
   <br>
 <p><strong>Based on your display name, a name recognition model would guess that your gender is :</strong></p>
-<h3 id = result><%=@result.returned_value[:name_gender]%></h3>
+<h3 id = result><%=@result_data["name_gender"]%></h3>
 <br>
 <p><strong>Based on your bio, a text analysis model would guess that your gender is :</strong></p>
-<h3 id = result><%=@result.returned_value[:user_bio_gender]%><h3>
+<h3 id = result><%=@result_data["user_bio_gender"]%><h3>
 <br>
 <p><strong>A text analysis model would guess that your tweets are :</strong></p>
-<h3 id = result><%="#{@result.returned_value[:posts_gender][:male]} male and #{@result.returned_value[:posts_gender][:female]} female"%></h3>
+<h3 id = result><%="#{@result_data["posts_gender"]["male"]} male and #{@result_data["posts_gender"]["female"]} female"%></h3>
 
 
 

@@ -1,3 +1,9 @@
+      <ul>
+      <% query.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+
 <%= form_with model: @query do |form| %>
   
 

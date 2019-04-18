@@ -12,7 +12,7 @@ class NameGender
     name = name
     country = country
     url = BASE_URL
-    sleep(2)
+    sleep(1)
     query = {
       name: name,
       country: country,
