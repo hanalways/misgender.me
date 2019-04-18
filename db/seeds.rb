@@ -1,7 +1,41 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Ethnicity.create!([
+  {name: "African-American"},
+  {name: "Arabic"},
+  {name: "Black"},
+  {name: "Caucasian"},
+  {name: "Central Asian"},
+  {name: "East Asian"},
+  {name: "First Nations"},
+  {name: "Hispanic"},
+  {name: "Jewish"},
+  {name: "Latina/Latino/Latinx"},
+  {name: "Middle Eastern"},
+  {name: "Native American"},
+  {name: "Native Hawaiian"},
+  {name: "Pacific Islander"},
+  {name: "South Asian"},
+  {name: "Southeast Asian"},
+  {name: "White"},
+  {name: "Not Listed"}
+])
+Gender.create!([
+  {name: "Agender"},
+  {name: "Aliagender"},
+  {name: "Androgyne"},
+  {name: "Bi- or tri- gender"},
+  {name: "Cisgender man"},
+  {name: "Cisgender Woman"},
+  {name: "Genderfluid"},
+  {name: "Genderfuck"},
+  {name: "Genderqueer"},
+  {name: "Gender questioning"},
+  {name: "Intergender"},
+  {name: "Neutrois"},
+  {name: "Nonbinary"},
+  {name: "Pangender"},
+  {name: "Polygender"},
+  {name: "Transgender man"},
+  {name: "Third gender"},
+  {name: "Transgender woman"},
+  {name: "Not listed"}
+])
